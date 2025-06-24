@@ -220,7 +220,11 @@ TaggedFeedUrl TtRssApi::feed_from_json(const json& jfeed,
 {
 	const int feed_id = jfeed["id"];
 	const std::string feed_title = jfeed["title"];
-	const std::string feed_url = jfeed["feed_url"];
+	std::string feed_url = "";
+
+	if (feed_id >= 0) {
+		feed_url = jfeed["feed_url"];
+	}
 
 	std::vector<std::string> tags;
 	// automatically tag by feedtitle
